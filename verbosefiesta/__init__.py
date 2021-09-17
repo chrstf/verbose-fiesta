@@ -37,7 +37,7 @@ def message(print_this: str, c: str = "NORMAL", verbose: int = 1, end: str = "\n
     :param lead_symbol: Symbol prepended to the message
     """
 
-    if verbose is None:
+    if verbose == 0:
         return None
 
     if verbose < verbose_level_threshold:
