@@ -6,20 +6,23 @@ _columns = get_terminal_size().columns  # for log messages
 
 
 def progress_bar(current: int, list_len: int, lead: str = "",
-                 verbose: int = True, at_v_level: int = 1):
+                 verbose: int = 0, verbose_level_threshold: int = 1):
     """
     Progress bar.
     :param current: current list index.
     :param list_len: Length of the list.
-    :param columns: Number of terminal columns.
     :param lead: Leading string.
     :param verbose: Verbose output.
-    :param at_v_level: At which verbosity level the progress bar should be printed.
+    :param verbose_level_threshold: This hurdle needs to be overcome in oder to get verbose
     """
     symbol = "█"
     bar_end = "\r"
-    if verbose != at_v_level:
+    if verbose == 0:
         return None
+
+    if verbose < verbose_level_threshold:
+        return None
+
     lead += f" {((float(current) + 1) / float(list_len)) * 100:5.1f} %"
     to_substract = len(lead)
     bar_range = np.linspace(0, _columns - (to_substract+1), list_len, endpoint=True)
