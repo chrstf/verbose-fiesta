@@ -6,7 +6,7 @@ _columns = get_terminal_size().columns  # for log messages
 
 
 def progress_bar(current: int, list_len: int, lead: str = "",
-                 verbose: int = 0, verbose_level_threshold: int = 1):
+                 verbose: int = True, verbose_level_threshold: int = 1):
     """
     Progress bar.
     :param current: current list index.
