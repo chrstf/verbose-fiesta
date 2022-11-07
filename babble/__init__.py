@@ -1,4 +1,5 @@
 import sys
+import inspect
 
 
 class BColors:
@@ -95,3 +96,8 @@ def bool_color(this: bool) -> str:
         return color("GREEN", f"{this}")
     elif not this:
         return color("RED", f"{this}")
+
+
+def get_function_name():
+    # [0] is this method's frame, [1] is the parent's frame - which we want
+    return inspect.stack()[1].function
