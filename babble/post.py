@@ -1,5 +1,6 @@
 import sys
 import inspect
+from .exceptions import *
 
 
 class BColors:
@@ -81,8 +82,7 @@ def warning_m(print_this: str, c: str = "YELLOW", verbose: int = 1, function_nam
 
 def error_m(print_this: str, c: str = "RED", function_name: str = None):
     message(print_this, c=c, lead_symbol="!", verbose=True, function_name=function_name)
-    print(color(c, "Aborting!"))
-    sys.exit()
+    raise ErrorMessage('Aborting!')
 
 
 def locator(number: int, c: str = "RED"):
