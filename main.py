@@ -1,5 +1,7 @@
 from babble import post
 from babble.exceptions import ErrorMessage
+from babble import progressbar
+from time import sleep
 
 
 def test():
@@ -14,6 +16,13 @@ def test():
         post.error_m(f'{msg}: error')
     except ErrorMessage:
         post.message('Error caught')
+
+    # progress bar
+    rng = 5
+    for i in range(rng):
+        progressbar.progress_bar(i, rng)
+        sleep(1)
+
     return None
 
 
