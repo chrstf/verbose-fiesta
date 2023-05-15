@@ -1,3 +1,4 @@
+import itertools
 import sys
 import inspect
 from .exceptions import *
@@ -83,6 +84,19 @@ def warning_m(print_this: str, c: str = "YELLOW", verbose: int = 1, function_nam
 def error_m(print_this: str, c: str = "RED", function_name: str = None):
     message(print_this, c=c, lead_symbol="!", verbose=True, function_name=function_name)
     raise ErrorMessage('Aborting!')
+
+
+class Locator:
+    instances = list()
+    new_id = itertools.count()
+
+    def __init__(self):
+        self.id = next(self.__class__.new_id)
+        self.__class__.instances.append(self)
+
+    def __str__(self):
+        out = f"\n{'$'*20}\n{self.id:^18d}\n{'$'*20}"
+        return color('RED', out)
 
 
 def locator(number: int, c: str = "RED"):
